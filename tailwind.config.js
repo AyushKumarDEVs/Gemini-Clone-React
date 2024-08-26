@@ -7,12 +7,7 @@ export default {
   ],
   theme: {
     extend: {
-      width:{
-        imagewidth:"2 vmin"
-      },
-      height:{
-        imageheight:"2 vmin"
-      },
+     
     },
   },
   plugins: [require('tailwind-scrollbar'),],
