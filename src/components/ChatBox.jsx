@@ -23,7 +23,7 @@ function ChatBox({prompt,id}) {
   }, [])
   
   return (
-    <div className='flex flex-col gap-8 w-full h-fit'>
+    <div className='flex flex-col gap-8 w-full h-fi'>
        
        <div className='flex gap-5 h-fit w-full items-start justify-between'>
        <img className='items-start w-10 h-10 rounded-full' src={assets.user_icon} alt="plusbtn" />

@@ -9,7 +9,7 @@ function App() {
     <>
     <div className=' bg-white flex w-screen h-screen'>
       <LeftNavBar/>
-      <div className='flex flex-col w-full h-screen'>
+      <div className='flex flex-col w-screen h-screen'>
         <UpperNavBar/>
         <Content/>
       </div>
