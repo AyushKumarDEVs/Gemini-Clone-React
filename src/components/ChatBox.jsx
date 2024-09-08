@@ -14,7 +14,7 @@ function ChatBox({prompt,id,isResponseCompleted,Response}) {
     prompt&&!isResponseCompleted? run(prompt).then((data)=>{
       if(data){
         let arr=data.split("**");
-        let newdata;
+        let newdata="";
         for(let i=0;i<arr.length;i++){
           if(i==0||i%2==0){
             newdata+=arr[i];
