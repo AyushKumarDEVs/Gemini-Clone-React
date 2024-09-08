@@ -4,6 +4,7 @@ import ChatBox from "./ChatBox";
 import { assets } from "../assets/assets.js";
 import { useDispatch, useSelector } from "react-redux";
 import { AddChats } from "../slices/ChatStoreSlice.js";
+import "./css/content.css"
 function Content() {
   let ChatsList = useSelector((state) => state.ChatsList);
   const [chatlist, setchatlist] = useState([])
@@ -40,10 +41,10 @@ function Content() {
         chatlist.length <= 0 && (
           <div className="w-fit h-full flex flex-col gap-16 sm:gap-10">
             <div className=" flex flex-col  gap-3 item-center">
-              <h1 className="text-transparent bg-clip-text text-4xl sm:text-5xl  font-semibold font-sans h-fit sm:h-14 bg-gradient-to-r from-blue-500 via-red-500 to-red-900">
+              <h1 className="roboto-regular text-transparent bg-clip-text text-4xl sm:text-5xl  font-semibold font-sans h-fit sm:h-14 bg-gradient-to-r from-blue-500 via-red-500 to-red-900">
                 Hello, Ayush
               </h1>
-              <h2 className="mb-5 text-transparent bg-clip-text text-3xl sm:text-5xl font-semibold font-sans sm:h-16 h-20 bg-gray-400">
+              <h2 className="roboto-medium mb-5 text-transparent bg-clip-text text-3xl sm:text-5xl font-semibold font-sans sm:h-16 h-20 bg-gray-400">
                 How can I help you today?
               </h2>
             </div>
@@ -51,27 +52,27 @@ function Content() {
             <div className=" sm:grid grid-cols-1 sm:grid-cols-4 h-52 gap-5 w-full grid-rows-1 sm:w-full  overflow-x-scroll  scrollbar-none ">
               <ExamlePromptBox
                 prompt={
-                  "Outline an organized & logical sales pitch for a new product"
+                  "Suggest the best parks to visit in Chandigarh , india  with descriptions"
                 }
-                icon={assets.mic_icon}
+                icon={assets.compass_icon}
               />
               <ExamlePromptBox
                 prompt={
-                  "Outline an organized & logical sales pitch for a new product"
+                  "Help design a database schema for a business"
                 }
-                icon={assets.mic_icon}
+                icon={assets.code_icon}
               />
               <ExamlePromptBox
                 prompt={
-                  "Outline an organized & logical sales pitch for a new product"
+                  "As a social trend expert, explain a term social"
                 }
-                icon={assets.mic_icon}
+                icon={assets.bulb_icon}
               />
               <ExamlePromptBox
                 prompt={
-                  "Outline an organized & logical sales pitch for a new product"
+                  "Give tips on how to take class notes"
                 }
-                icon={assets.mic_icon}
+                icon={assets.compass_icon}
               />
             </div>
           </div>

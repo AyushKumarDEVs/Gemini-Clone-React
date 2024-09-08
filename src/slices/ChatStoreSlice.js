@@ -20,11 +20,13 @@ const ChatStoreSlice = createSlice({
 
         SetChatsList:(state,action)=>{
             state.ChatsList=[action.payload.c];
-        }
+        },
         
-
+        clearChatlist:(state,action)=>{
+            state.ChatsList=[];
+        },
     },
 });
 
-export const { AddChats,UpdateChat,AddRecentChats,SetChatsList } = ChatStoreSlice.actions;
+export const { AddChats,UpdateChat,AddRecentChats,SetChatsList,clearChatlist } = ChatStoreSlice.actions;
 export default ChatStoreSlice.reducer;
