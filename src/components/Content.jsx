@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ExamlePromptBox from "./ExamlePromptBox";
 import ChatBox from "./ChatBox";
 import { assets } from "../assets/assets.js";
@@ -6,11 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { AddChats } from "../slices/ChatStoreSlice.js";
 function Content() {
   let ChatsList = useSelector((state) => state.ChatsList);
-
+  const [chatlist, setchatlist] = useState([])
   const [prompt, setprompt] = useState("");
 
   const dispatch = useDispatch();
   let c = 0;
+
+  useEffect(() => {
+    console.log("ChatsList="+ChatsList);
+    setchatlist(ChatsList);
+  }, [ChatsList])
+  
 
   function OnSendM(e) {
     dispatch(
@@ -19,7 +25,7 @@ function Content() {
           id: Date.now(),
           isResponseCompleted: false,
           prompt: prompt,
-          Response: "",
+          response: "",
         },
       })
     );
@@ -31,7 +37,7 @@ function Content() {
       {
         //this div will disable if we have chats
 
-        ChatsList.length <= 0 && (
+        chatlist.length <= 0 && (
           <div className="w-fit h-full flex flex-col gap-16 sm:gap-10">
             <div className=" flex flex-col  gap-3 item-center">
               <h1 className="text-transparent bg-clip-text text-4xl sm:text-5xl  font-semibold font-sans h-fit sm:h-14 bg-gradient-to-r from-blue-500 via-red-500 to-red-900">
@@ -72,10 +78,10 @@ function Content() {
         )
       }
       <div className="w-full h-full flex flex-col gap-16 sm:gap-10 overflow-y-scroll scrollbar-none ">
-          {ChatsList.length > 0
-            ? ChatsList.map((each) => (
-                <div key={each.id} className="h-fit w-full">
-                  <ChatBox prompt={each.prompt} id={each.id} />
+          {chatlist.length > 0
+            ? chatlist.map((each) => (
+                <div key={c++} className="h-fit w-full">
+                  <ChatBox prompt={each.prompt} id={each.id} isResponseCompleted={each.isResponseCompleted} Response={each.response}/>
                 </div>
               ))
             : null}

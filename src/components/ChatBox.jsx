@@ -1,26 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import {assets} from "../assets/assets.js"
 import run from '../features/GeminiInitialize.js';
-import { useDispatch } from 'react-redux';
-import { UpdateChat } from '../slices/ChatStoreSlice.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { AddChats, AddRecentChats, UpdateChat } from '../slices/ChatStoreSlice.js';
 
-function ChatBox({prompt,id}) {
+function ChatBox({prompt,id,isResponseCompleted,Response}) {
   const [response, setresponse] = useState(null);
   const dispatch=useDispatch();
+  let ChatsList = useSelector((state) => state.ChatsList);
 
 
   useEffect(() => {
-    prompt? run(prompt).then((data)=>{
+    prompt&&!isResponseCompleted? run(prompt).then((data)=>{
       if(data){
         setresponse(data);
-        dispatch(UpdateChat({response:response,id:id,isResponseCompleted:true}));
-        console.log(data)
+        dispatch(
+          UpdateChat({
+            isResponseCompleted:true,
+            response:data,
+          })
+        );   
+        
+        dispatch(AddRecentChats({
+          Chat:{
+            isResponseCompleted:true,
+            prompt:prompt,
+            response:data,
+            id:id,
+          }          
+        }))
+       
 
       }
-    }).catch((e)=>alert(e))
+    }).catch((e)=>console.log(e))
     :
-    null
-  }, [])
+    prompt&&isResponseCompleted? setresponse(Response)
+    :null
+
+    console.log(ChatsList)
+    console.log(Response)
+
+
+  }, [Response])
   
   return (
     <div className='flex flex-col gap-8 w-full h-fi'>

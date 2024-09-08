@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Recent from './Recent'
 import {assets} from "../assets/assets.js"
+import { useSelector } from 'react-redux';
 
 function LeftNavBar() {
+  const [recentsPannel, setrecentsPannel] = useState(false);
   return (
     <>
 
         <div className='bg-slate-200 p-7 py-5 flex gap-5 flex-col justify-between items-start w-fit h-screen '>
             <div className='flex flex-col justify-start gap-16 items-start'>
-            <button><img className='w-9 h-7 ' src={assets.menu_icon} alt="menubtn" /></button>            
+            <button onClick={()=>setrecentsPannel(!recentsPannel)}><img className='w-9 h-7 ' src={assets.menu_icon} alt="menubtn" /></button>            
            {
-            //<Recent/>
+            recentsPannel&&<Recent/>
            } 
 
             </div>
